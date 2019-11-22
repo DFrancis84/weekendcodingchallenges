@@ -10,5 +10,5 @@ This should return 100% coverage
 
 # To peel your own word(s)
 1. `cd cmd`
-2. `go run main.go <words to peel with a space between each word>`
+2. `go run main.go` followed by the words you would like peeled with spaces between each word.
 
