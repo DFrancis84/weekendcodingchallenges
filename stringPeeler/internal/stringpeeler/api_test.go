@@ -40,7 +40,8 @@ func Test_StringPeeler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			res := StringPeeler(tt.args.word)
+			sP := StringPeelerAPI{}
+			res := sP.StringPeeler(tt.args.word)
 			if reflect.DeepEqual(res, tt.want) {
 				fmt.Printf("Want: %v Got: %v\n", tt.want, res)
 			}
