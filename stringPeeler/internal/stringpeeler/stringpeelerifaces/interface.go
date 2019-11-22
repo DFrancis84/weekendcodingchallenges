@@ -1,5 +1,5 @@
 package stringpeelerifaces
 
 type StringPeelerClient interface {
-	StringPeeler(input string) string
+	StringPeeler(input string) (string, error)
 }

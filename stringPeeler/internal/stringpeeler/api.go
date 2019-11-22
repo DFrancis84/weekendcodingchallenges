@@ -1,6 +1,7 @@
 package stringpeeler
 
 import (
+	"errors"
 	"fmt"
 )
 
@@ -10,12 +11,11 @@ func New() *StringPeelerAPI {
 	return &StringPeelerAPI{}
 }
 
-func (sp *StringPeelerAPI) StringPeeler(input string) string {
+func (sp *StringPeelerAPI) StringPeeler(input string) (string, error) {
 	if len(input) <= 2 {
-		output := fmt.Sprintf("word must be larger than 2 characters long. current word '%v' is only %v characters long\n", input, len(input))
-		return output
+		return "", errors.New(fmt.Sprintf("word must be larger than 2 characters long. current word '%v' is only %v characters long", input, len(input)))
 	}
 	output := input[:len(input)-1]
 	output = output[1:]
-	return output
+	return output, nil
 }

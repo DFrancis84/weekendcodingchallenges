@@ -2,7 +2,6 @@ package stringpeeler
 
 import (
 	"fmt"
-	"reflect"
 	"testing"
 )
 
@@ -34,16 +33,22 @@ func Test_StringPeeler(t *testing.T) {
 			args: args{
 				word: "a",
 			},
-			want:    "word must be larger than 2 characters long. current word 'a' is only 1 characters long",
-			wantErr: false,
+			wantErr: true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			sP := StringPeelerAPI{}
-			res := sP.StringPeeler(tt.args.word)
-			if reflect.DeepEqual(res, tt.want) {
-				fmt.Printf("Want: %v Got: %v\n", tt.want, res)
+			fmt.Printf("Word to peel: %v\n", tt.args.word)
+			res, err := sP.StringPeeler(tt.args.word)
+			if res != tt.want {
+				t.Errorf("StringPeeler = %v, want = %v", res, tt.want)
+			}
+			if err != nil {
+				fmt.Println(err)
+				if !tt.wantErr {
+					t.Errorf("StringPeeler error = %v, want = %v", err, tt.wantErr)
+				}
 			}
 		})
 	}
