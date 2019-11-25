@@ -3,6 +3,7 @@ package stringpeeler
 import (
 	"fmt"
 	"testing"
+	"time"
 )
 
 func Test_New(t *testing.T) {
@@ -38,6 +39,7 @@ func Test_StringPeeler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			s := time.Now()
 			sP := StringPeelerAPI{}
 			fmt.Printf("Word to peel: %v\n", tt.args.word)
 			res, err := sP.StringPeeler(tt.args.word)
@@ -50,6 +52,7 @@ func Test_StringPeeler(t *testing.T) {
 					t.Errorf("StringPeeler error = %v, want = %v", err, tt.wantErr)
 				}
 			}
+			fmt.Printf("%v Complete: %v\n", tt.name, time.Since(s))
 		})
 	}
 }
